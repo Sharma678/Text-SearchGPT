@@ -29,3 +29,17 @@ __pycache__/
 
 # macOS
 .DS_Store
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.bin
+*.mp3
+*.mp4
+*.zip
+*.npz
+*.pth
+*.pt
+*.npy
+*.webp
+*.gif
