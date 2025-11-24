@@ -1,5 +1,3 @@
-"""This file should be imported if and only if you want to run the UI locally."""
-
 import base64
 import logging
 import time
@@ -32,7 +30,7 @@ THIS_DIRECTORY_RELATIVE = Path(__file__).parent.relative_to(PROJECT_ROOT_PATH)
 # Should be "private_gpt/ui/avatar-bot.ico"
 AVATAR_BOT = THIS_DIRECTORY_RELATIVE / "avatar-bot.ico"
 
-UI_TAB_TITLE = "My Private GPT"
+UI_TAB_TITLE = "My Text-SearchGPT"
 
 SOURCES_SEPARATOR = "<hr>Sources: \n"
 
@@ -368,29 +366,26 @@ class PrivateGptUi:
         with gr.Blocks(
             title=UI_TAB_TITLE,
             theme=gr.themes.Soft(primary_hue=slate),
-            css=".logo { "
-            "display:flex;"
-            "background-color: #C7BAFF;"
-            "height: 80px;"
-            "border-radius: 8px;"
-            "align-content: center;"
-            "justify-content: center;"
-            "align-items: center;"
-            "}"
-            ".logo img { height: 25% }"
-            ".contain { display: flex !important; flex-direction: column !important; }"
-            "#component-0, #component-3, #component-10, #component-8  { height: 100% !important; }"
-            "#chatbot { flex-grow: 1 !important; overflow: auto !important;}"
-            "#col { height: calc(100vh - 112px - 16px) !important; }"
-            "hr { margin-top: 1em; margin-bottom: 1em; border: 0; border-top: 1px solid #FFF; }"
-            ".avatar-image { background-color: antiquewhite; border-radius: 2px; }"
-            ".footer { text-align: center; margin-top: 20px; font-size: 14px; display: flex; align-items: center; justify-content: center; }"
-            ".footer-zylon-link { display:flex; margin-left: 5px; text-decoration: auto; color: var(--body-text-color); }"
-            ".footer-zylon-link:hover { color: #C7BAFF; }"
-            ".footer-zylon-ico { height: 20px; margin-left: 5px; background-color: antiquewhite; border-radius: 2px; }",
+            css=".logo {"
+                "display: flex;"
+                "background: linear-gradient(135deg, #667eea, #764ba2);"
+                "color: white;"
+                "font-size: 26px;"
+                "font-weight: 600;"
+                "height: 80px;"
+                "border-radius: 12px;"
+                "justify-content: center;"
+                "align-items: center;"
+                "transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                "box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);"
+                "cursor: pointer;}"
+                ".logo:hover {"
+                "transform: scale(1.03);"
+                "box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);}",
         ) as blocks:
             with gr.Row():
-                gr.HTML(f"<div class='logo'/><img src={logo_svg} alt=PrivateGPT></div")
+                with gr.Row():
+                    gr.HTML(f"<div class='logo'>Text-SearchGPT</div>")
 
             with gr.Row(equal_height=False):
                 with gr.Column(scale=3):
@@ -565,7 +560,7 @@ class PrivateGptUi:
                 avatar_byte = AVATAR_BOT.read_bytes()
                 f_base64 = f"data:image/png;base64,{base64.b64encode(avatar_byte).decode('utf-8')}"
                 gr.HTML(
-                    f"<div class='footer'><a class='footer-zylon-link' href='https://zylon.ai/'>Maintained by Zylon <img class='footer-zylon-ico' src='{f_base64}' alt=Zylon></a></div>"
+                    f"<div class='footer'><a class='footer-zylon-link' href='https://zylon.ai/'>Maintained by Sha And Nithish <img class='footer-zylon-ico' src='{f_base64}' alt=Zylon></a></div>"
                 )
 
         return blocks
